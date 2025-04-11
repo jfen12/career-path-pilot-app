@@ -1,38 +1,54 @@
-
-import { Home, User, Calendar, Briefcase, Menu } from "lucide-react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Home, Users, Calendar, Briefcase, MoreHorizontal } from "lucide-react";
+import MoreMenu from "./MoreMenu";
 
 const MobileBottomNav = () => {
   const location = useLocation();
-  
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
+
   const navItems = [
     { icon: Home, path: "/dashboard", label: "Home" },
-    { icon: User, path: "/networking", label: "Network" },
+    { icon: Users, path: "/networking", label: "Network" },
     { icon: Calendar, path: "/development", label: "Develop" },
     { icon: Briefcase, path: "/jobs", label: "Jobs" },
-    { icon: Menu, path: "/more", label: "More" }
+    { icon: MoreHorizontal, path: "/more", label: "More" }
   ];
-  
+
   return (
-    <nav className="mobile-nav">
-      <div className="flex justify-around items-center">
-        {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
-          return (
+    <>
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden">
+        <div className="flex justify-around items-center h-16">
+          {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center p-1 ${
-                isActive ? "text-career-purple" : "text-career-gray"
+              onClick={() => {
+                if (item.path === "/more") {
+                  setShowMoreMenu(!showMoreMenu);
+                } else {
+                  setShowMoreMenu(false);
+                }
+              }}
+              className={`flex flex-col items-center justify-center w-full h-full ${
+                location.pathname === item.path ? "text-blue-600" : "text-gray-600"
               }`}
             >
-              <item.icon size={20} />
+              <item.icon size={24} />
               <span className="text-xs mt-1">{item.label}</span>
             </Link>
-          );
-        })}
-      </div>
-    </nav>
+          ))}
+        </div>
+      </nav>
+
+      {showMoreMenu && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
+          <div className="fixed bottom-16 left-0 right-0 bg-white rounded-t-xl">
+            <MoreMenu />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
