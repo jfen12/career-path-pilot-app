@@ -1,8 +1,8 @@
-
 import { useState } from "react";
-import { Search, Plus } from "lucide-react";
+import { Search, Plus, Calendar, Filter, ArrowUpDown } from "lucide-react";
 import PageContainer from "@/components/layout/PageContainer";
 import ContactCard, { Contact } from "@/components/networking/ContactCard";
+import FollowUpCard from "@/components/networking/FollowUpCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -14,6 +14,8 @@ import {
   DialogHeader,
   DialogTitle 
 } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { FollowUpItem, FollowUpType } from "@/types/followUp";
 
 // Sample data for contacts
 const sampleContacts: Contact[] = [
@@ -73,6 +75,44 @@ const messageTemplates = [
   },
 ];
 
+// Sample follow-up items
+const sampleFollowUps: FollowUpItem[] = [
+  {
+    id: "1",
+    contactId: "1",
+    contactName: "Alicia Rodriguez",
+    type: "introduction",
+    description: "Introduce to John Smith at TechStart",
+    dueDate: "2024-03-20",
+    status: "pending",
+    notes: "John is looking for a product manager with experience in AI",
+    createdAt: "2024-03-15",
+    updatedAt: "2024-03-15"
+  },
+  {
+    id: "2",
+    contactId: "2",
+    contactName: "Marcus Johnson",
+    type: "resume",
+    description: "Send updated resume with recent project experience",
+    dueDate: "2024-03-18",
+    status: "overdue",
+    createdAt: "2024-03-10",
+    updatedAt: "2024-03-10"
+  },
+  {
+    id: "3",
+    contactId: "3",
+    contactName: "Sarah Chen",
+    type: "referral",
+    description: "Refer to open position at DevSolutions",
+    dueDate: "2024-03-25",
+    status: "pending",
+    createdAt: "2024-03-16",
+    updatedAt: "2024-03-16"
+  }
+];
+
 const Networking = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("suggested");
@@ -81,6 +121,10 @@ const Networking = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(messageTemplates[0]);
   const [customMessage, setCustomMessage] = useState("");
   const { toast } = useToast();
+  const [sortBy, setSortBy] = useState<'dueDate' | 'status' | 'type'>('dueDate');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [typeFilter, setTypeFilter] = useState<string>('all');
 
   const handleConnect = (contact: Contact) => {
     setSelectedContact(contact);
@@ -106,11 +150,50 @@ const Networking = () => {
     setIsTemplateOpen(false);
   };
 
+  const handleCompleteFollowUp = (id: string) => {
+    toast({
+      title: "Follow-up completed",
+      description: "Great job staying on top of your networking!",
+    });
+  };
+
+  const handleCreateFollowUp = (contact: Contact) => {
+    setSelectedContact(contact);
+    setIsTemplateOpen(true);
+  };
+
   const filteredContacts = sampleContacts.filter((contact) =>
     contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     contact.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
     contact.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const filteredFollowUps = sampleFollowUps.filter((followUp) =>
+    followUp.contactName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    followUp.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const sortedAndFilteredFollowUps = filteredFollowUps
+    .filter(followUp => {
+      if (statusFilter !== 'all' && followUp.status !== statusFilter) return false;
+      if (typeFilter !== 'all' && followUp.type !== typeFilter) return false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'dueDate') {
+        return sortOrder === 'asc' 
+          ? new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+          : new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
+      }
+      if (sortBy === 'status') {
+        return sortOrder === 'asc'
+          ? a.status.localeCompare(b.status)
+          : b.status.localeCompare(a.status);
+      }
+      return sortOrder === 'asc'
+        ? a.type.localeCompare(b.type)
+        : b.type.localeCompare(a.type);
+    });
 
   return (
     <PageContainer title="Networking">
@@ -125,10 +208,11 @@ const Networking = () => {
       </div>
 
       <Tabs defaultValue="suggested" onValueChange={setActiveTab}>
-        <TabsList className="grid grid-cols-3 mb-6">
+        <TabsList className="grid grid-cols-4 mb-6">
           <TabsTrigger value="suggested">Suggested</TabsTrigger>
           <TabsTrigger value="recent">Recent</TabsTrigger>
           <TabsTrigger value="all">All Contacts</TabsTrigger>
+          <TabsTrigger value="followups">Follow-ups</TabsTrigger>
         </TabsList>
         
         <TabsContent value="suggested" className="animate-fade-in">
@@ -183,6 +267,85 @@ const Networking = () => {
           ) : (
             <div className="text-center py-10">
               <p className="text-career-gray">No contacts found</p>
+            </div>
+          )}
+        </TabsContent>
+        
+        <TabsContent value="followups" className="animate-fade-in">
+          <div className="mb-4 bg-career-soft-purple p-4 rounded-lg">
+            <h3 className="font-medium mb-1">Follow-up Summary</h3>
+            <p className="text-sm mb-2">
+              {filteredFollowUps.filter(f => f.status === 'pending').length} pending,{" "}
+              {filteredFollowUps.filter(f => f.status === 'overdue').length} overdue
+            </p>
+            <div className="w-full bg-white rounded-full h-2 mb-2">
+              <div 
+                className="bg-career-purple h-2 rounded-full" 
+                style={{ 
+                  width: `${(filteredFollowUps.filter(f => f.status === 'completed').length / filteredFollowUps.length) * 100}%` 
+                }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="flex gap-2 mb-4">
+            <Select value={sortBy} onValueChange={(value: 'dueDate' | 'status' | 'type') => setSortBy(value)}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="dueDate">Due Date</SelectItem>
+                <SelectItem value="status">Status</SelectItem>
+                <SelectItem value="type">Type</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+            >
+              <ArrowUpDown className="h-4 w-4" />
+            </Button>
+
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Filter by status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Statuses</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="completed">Completed</SelectItem>
+                <SelectItem value="overdue">Overdue</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={typeFilter} onValueChange={setTypeFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Filter by type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="introduction">Introduction</SelectItem>
+                <SelectItem value="referral">Referral</SelectItem>
+                <SelectItem value="resume">Resume</SelectItem>
+                <SelectItem value="meeting">Meeting</SelectItem>
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {sortedAndFilteredFollowUps.length > 0 ? (
+            sortedAndFilteredFollowUps.map((followUp) => (
+              <FollowUpCard
+                key={followUp.id}
+                followUp={followUp}
+                onComplete={handleCompleteFollowUp}
+              />
+            ))
+          ) : (
+            <div className="text-center py-10">
+              <p className="text-career-gray">No follow-up items found</p>
             </div>
           )}
         </TabsContent>
