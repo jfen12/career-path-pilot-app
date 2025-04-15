@@ -1,29 +1,26 @@
 import { Link } from "react-router-dom";
-import { Building2, Settings, HelpCircle, LogOut } from "lucide-react";
+import { Settings, HelpCircle, LogOut, Building2 } from "lucide-react";
 
 const MoreMenu = () => {
   const menuItems = [
-    { icon: Building2, path: "/business/marketplace", label: "Business Marketplace" },
-    { icon: Settings, path: "/settings", label: "Settings" },
-    { icon: HelpCircle, path: "/help", label: "Help & Support" },
-    { icon: LogOut, path: "/logout", label: "Logout" }
+    { icon: Building2, label: "Business Marketplace", path: "/business/marketplace" },
+    { icon: Settings, label: "Settings", path: "/settings" },
+    { icon: HelpCircle, label: "Help & Support", path: "/help" },
+    { icon: LogOut, label: "Logout", path: "/logout" }
   ];
 
   return (
-    <div className="p-4">
-      <h2 className="text-lg font-semibold mb-4">More Options</h2>
-      <div className="space-y-2">
-        {menuItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <item.icon size={20} className="text-gray-600" />
-            <span>{item.label}</span>
-          </Link>
-        ))}
-      </div>
+    <div className="py-4">
+      {menuItems.map((item) => (
+        <Link
+          key={item.path}
+          to={item.path}
+          className="flex items-center px-6 py-3 text-soft-sand hover:bg-gold-ochre hover:text-deep-teal transition-colors"
+        >
+          <item.icon className="mr-3" size={20} />
+          <span className="body-text">{item.label}</span>
+        </Link>
+      ))}
     </div>
   );
 };

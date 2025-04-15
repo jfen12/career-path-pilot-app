@@ -1,13 +1,15 @@
-
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
 	darkMode: ["class"],
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	prefix: "",
 	theme: {
@@ -73,12 +75,19 @@ export default {
 					'dark-gray': '#1A1F2C',
 					gray: '#8E9196',
 					'light-gray': '#F1F0FB',
-				}
+				},
+				'deep-teal': '#083D46',
+				'gold-ochre': '#F4A950',
+				'soft-sand': '#F5F0E6',
+				'slate-gray': '#47575E',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				'button': '8px',
+				'input': '6px',
+				'card': '12px',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -102,7 +111,7 @@ export default {
 					'100%': { opacity: '1' }
 				},
 				'slide-up': {
-					'0%': { transform: 'translateY(10px)', opacity: '0' },
+					'0%': { transform: 'translateY(20px)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
 				}
 			},
@@ -111,8 +120,20 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
 				'slide-up': 'slide-up 0.4s ease-out'
-			}
+			},
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				display: ['Poppins', 'sans-serif'],
+			},
+			fontSize: {
+				'h1': ['40px', '1.2'],
+				'h2': ['28px', '1.3'],
+				'body': ['16px', '1.5'],
+				'caption': ['12px', '1.4'],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+export default config;

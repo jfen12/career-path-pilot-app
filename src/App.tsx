@@ -1,54 +1,44 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NotFound from "./pages/NotFound";
+import Navbar from "./components/layout/Navbar";
+import MobileBottomNav from "./components/layout/MobileBottomNav";
 
-// Import layout component
-import AppLayout from "./components/layout/AppLayout";
-
-// Import pages
-import Welcome from "./pages/Welcome";
-import Onboarding from "./pages/onboarding/Onboarding";
+// Pages
 import Dashboard from "./pages/Dashboard";
 import Networking from "./pages/Networking";
 import Development from "./pages/Development";
-import JobsMain from "./pages/jobs/JobsMain";
-import JobApplications from "./pages/jobs/JobApplications";
-import More from "./pages/More";
-import { BusinessMarketplace } from "./pages/business/Marketplace";
+import Jobs from "./pages/Jobs";
+import BusinessMarketplace from "./pages/business/Marketplace";
+import Settings from "./pages/Settings";
+import Help from "./pages/Help";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* Public routes */}
-          <Route path="/" element={<Welcome />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          
-          {/* App routes - wrapped in AppLayout with bottom nav */}
-          <Route element={<AppLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/networking" element={<Networking />} />
-            <Route path="/development" element={<Development />} />
-            <Route path="/jobs" element={<JobsMain />} />
-            <Route path="/jobs/applications" element={<JobApplications />} />
-            <Route path="/business/marketplace" element={<BusinessMarketplace />} />
-            <Route path="/more" element={<More />} />
-          </Route>
-          
-          {/* Catch-all route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <div className="min-h-screen bg-soft-sand">
+          <Navbar />
+          <main className="container mx-auto px-4 pt-20 pb-24 md:pb-8">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/networking" element={<Networking />} />
+              <Route path="/development" element={<Development />} />
+              <Route path="/jobs" element={<Jobs />} />
+              <Route path="/business/marketplace" element={<BusinessMarketplace />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/help" element={<Help />} />
+            </Routes>
+          </main>
+          <MobileBottomNav />
+          <Toaster />
+        </div>
+      </Router>
+    </QueryClientProvider>
+  );
+}
 
 export default App;

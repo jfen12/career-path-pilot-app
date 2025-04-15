@@ -17,7 +17,7 @@ const MobileBottomNav = () => {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 bg-deep-teal border-t border-gold-ochre md:hidden">
         <div className="flex justify-around items-center h-16">
           {navItems.map((item) => (
             <Link
@@ -31,7 +31,7 @@ const MobileBottomNav = () => {
                 }
               }}
               className={`flex flex-col items-center justify-center w-full h-full ${
-                location.pathname === item.path ? "text-blue-600" : "text-gray-600"
+                location.pathname === item.path ? "text-gold-ochre" : "text-soft-sand"
               }`}
             >
               <item.icon size={24} />
@@ -43,7 +43,7 @@ const MobileBottomNav = () => {
 
       {showMoreMenu && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
-          <div className="fixed bottom-16 left-0 right-0 bg-white rounded-t-xl">
+          <div className="fixed bottom-16 left-0 right-0 bg-deep-teal rounded-t-xl border-t border-gold-ochre">
             <MoreMenu />
           </div>
         </div>
