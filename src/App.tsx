@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navbar from "./components/layout/Navbar";
 import MobileBottomNav from "./components/layout/MobileBottomNav";
+import ChatBot from "./components/chat/ChatBot";
 
 // Pages
 import Dashboard from "./pages/Dashboard";
@@ -34,6 +35,7 @@ function App() {
             </Routes>
           </main>
           <MobileBottomNav />
+          <ChatBot />
           <Toaster />
         </div>
       </Router>
