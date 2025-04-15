@@ -23,8 +23,8 @@ const Navbar = () => {
           <Link to="/jobs" className="nav-link">
             Jobs
           </Link>
-          <Link to="/business/marketplace" className="nav-link">
-            Business
+          <Link to="/hiring" className="nav-link">
+            Hiring
           </Link>
         </div>
 

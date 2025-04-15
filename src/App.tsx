@@ -9,7 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Networking from "./pages/Networking";
 import Development from "./pages/Development";
 import Jobs from "./pages/Jobs";
-import BusinessMarketplace from "./pages/business/Marketplace";
+import Hiring from "./pages/Hiring";
 import Settings from "./pages/Settings";
 import Help from "./pages/Help";
 
@@ -28,7 +28,7 @@ function App() {
               <Route path="/networking" element={<Networking />} />
               <Route path="/development" element={<Development />} />
               <Route path="/jobs" element={<Jobs />} />
-              <Route path="/business/marketplace" element={<BusinessMarketplace />} />
+              <Route path="/hiring" element={<Hiring />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/help" element={<Help />} />
             </Routes>

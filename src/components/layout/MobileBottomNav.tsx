@@ -11,7 +11,7 @@ const MobileBottomNav = () => {
     { icon: Home, path: "/dashboard", label: "Home" },
     { icon: Users, path: "/networking", label: "Network" },
     { icon: Calendar, path: "/development", label: "Develop" },
-    { icon: Briefcase, path: "/jobs", label: "Jobs" },
+    { icon: Briefcase, path: "/hiring", label: "Hiring" },
     { icon: MoreHorizontal, path: "/more", label: "More" }
   ];
 
