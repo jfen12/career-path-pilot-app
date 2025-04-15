@@ -63,7 +63,7 @@ export default function ChatBot() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-20 right-4 bg-primary text-white rounded-full p-4 shadow-lg hover:bg-primary/90 transition-colors"
+        className="fixed bottom-20 right-4 bg-primary text-white rounded-full p-4 shadow-lg hover:bg-primary/90 transition-colors z-50"
       >
         <img src="/jen-avatar.svg" alt="Jen" className="w-12 h-12" />
       </button>
@@ -71,9 +71,9 @@ export default function ChatBot() {
   }
 
   return (
-    <div className={`fixed bottom-20 right-4 w-96 bg-white rounded-lg shadow-xl transition-all ${isMinimized ? 'h-14' : 'h-[600px]'}`}>
+    <div className={`fixed bottom-20 right-4 w-96 bg-white rounded-lg shadow-xl transition-all ${isMinimized ? 'h-14' : 'h-[600px]'} z-50`}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b">
+      <div className="flex items-center justify-between p-4 border-b bg-white rounded-t-lg">
         <div className="flex items-center gap-2">
           <img src="/jen-avatar.svg" alt="Jen" className="w-8 h-8" />
           <span className="font-semibold">Jen - Career Coach</span>
@@ -81,13 +81,13 @@ export default function ChatBot() {
         <div className="flex gap-2">
           <button
             onClick={() => setIsMinimized(!isMinimized)}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-gray-500 hover:text-gray-700 p-2"
           >
             {isMinimized ? '▲' : '▼'}
           </button>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-gray-500 hover:text-gray-700 p-2"
           >
             ✕
           </button>
@@ -137,7 +137,7 @@ export default function ChatBot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t">
+          <div className="p-4 border-t bg-white rounded-b-lg">
             <div className="flex gap-2">
               <input
                 type="text"
