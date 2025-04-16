@@ -26,6 +26,9 @@ const Navbar = () => {
           <Link to="/hiring" className="nav-link">
             Hiring
           </Link>
+          <Link to="/investors" className="nav-link">
+            Investors
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center space-x-4">
