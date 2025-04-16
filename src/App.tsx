@@ -13,6 +13,7 @@ import Jobs from "./pages/Jobs";
 import Hiring from "./pages/Hiring";
 import Settings from "./pages/Settings";
 import Help from "./pages/Help";
+import Investors from "./pages/Investors";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/development" element={<Development />} />
               <Route path="/jobs" element={<Jobs />} />
               <Route path="/hiring" element={<Hiring />} />
+              <Route path="/investors" element={<Investors />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/help" element={<Help />} />
             </Routes>
