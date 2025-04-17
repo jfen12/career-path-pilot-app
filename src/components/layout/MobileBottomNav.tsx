@@ -15,6 +15,14 @@ const MobileBottomNav = () => {
     { icon: MoreHorizontal, path: "/more", label: "More" }
   ];
 
+  const handleMoreClick = () => {
+    setShowMoreMenu(!showMoreMenu);
+  };
+
+  const handleCloseMoreMenu = () => {
+    setShowMoreMenu(false);
+  };
+
   return (
     <>
       <nav className="fixed bottom-0 left-0 right-0 bg-deep-teal border-t border-gold-ochre md:hidden">
@@ -25,9 +33,9 @@ const MobileBottomNav = () => {
               to={item.path}
               onClick={() => {
                 if (item.path === "/more") {
-                  setShowMoreMenu(!showMoreMenu);
+                  handleMoreClick();
                 } else {
-                  setShowMoreMenu(false);
+                  handleCloseMoreMenu();
                 }
               }}
               className={`flex flex-col items-center justify-center w-full h-full ${
@@ -42,9 +50,15 @@ const MobileBottomNav = () => {
       </nav>
 
       {showMoreMenu && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
-          <div className="fixed bottom-16 left-0 right-0 bg-deep-teal rounded-t-xl border-t border-gold-ochre">
-            <MoreMenu />
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden"
+          onClick={handleCloseMoreMenu}
+        >
+          <div 
+            className="fixed bottom-16 left-0 right-0 bg-deep-teal rounded-t-xl border-t border-gold-ochre"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <MoreMenu onClose={handleCloseMoreMenu} />
           </div>
         </div>
       )}
