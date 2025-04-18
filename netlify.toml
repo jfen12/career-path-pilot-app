@@ -1,11 +1,15 @@
 [build]
+  command = "pnpm run build"
+  publish = "dist"
   base = "apps/web"
-  command = "cd ../.. && npm install && cd apps/web && npm run build"
-  publish = "apps/web/.next"
 
 [build.environment]
-  NODE_VERSION = "18"
-  NEXT_TELEMETRY_DISABLED = "1"
+  NEXT_PUBLIC_APP_URL = "https://career-path-pilot.netlify.app"
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = "your-stripe-publishable-key"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "your-supabase-anon-key"
+  NEXT_PUBLIC_SUPABASE_URL = "your-supabase-project-url"
+  STRIPE_SECRET_KEY = "your-stripe-secret-key"
+  STRIPE_WEBHOOK_SECRET = "your-stripe-webhook-secret"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
