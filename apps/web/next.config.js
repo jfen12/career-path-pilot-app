@@ -3,7 +3,6 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
-  output: 'standalone',
   experimental: {
     serverActions: true,
   },
