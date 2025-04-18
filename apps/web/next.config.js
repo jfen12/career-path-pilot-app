@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost', 'career-path-pilot-app.netlify.app'],
+    domains: [
+      'localhost',
+      'career-path-pilot-app.netlify.app',
+      'xxgrccxrwcgjixzbjair.supabase.co'
+    ],
   },
   experimental: {
     serverActions: true,
