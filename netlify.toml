@@ -1,6 +1,6 @@
 [build]
-  command = "pnpm run build"
-  publish = "dist"
+  command = "cd apps/web && pnpm install && pnpm run build"
+  publish = "apps/web/.next"
   base = "apps/web"
 
 [build.environment]
@@ -10,6 +10,8 @@
   NEXT_PUBLIC_SUPABASE_URL = "your-supabase-project-url"
   STRIPE_SECRET_KEY = "your-stripe-secret-key"
   STRIPE_WEBHOOK_SECRET = "your-stripe-webhook-secret"
+  NODE_VERSION = "18"
+  NEXT_TELEMETRY_DISABLED = "1"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
