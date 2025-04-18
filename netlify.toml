@@ -1,11 +1,22 @@
 [build]
   base = "apps/web"
-  command = "npm install && npm run build"
-  publish = "apps/web/.next"
+  command = "npm install && npm run build --workspace=apps/web"
+  publish = ".next"
 
 [build.environment]
+  # Supabase
   NEXT_PUBLIC_SUPABASE_URL = "https://xxgrccxrwcgjixzbjair.supabase.co"
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4Z3JjY3hyd2Nnaml4emJqYWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ5ODc5NDAsImV4cCI6MjA2MDU2Mzk0MH0.7fAJ7ghNvw3Io3gBXyGSwQw9qfrdlhGVx1_VK4zEqHQ"
+  
+  # Stripe
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = "your-stripe-publishable-key"
+  STRIPE_SECRET_KEY = "your-stripe-secret-key"
+  STRIPE_WEBHOOK_SECRET = "whsec_7f2f33aa185b4921535c8ebe09ec0c777f5bdbd469540aebd090b2ad29ec8984"
+  
+  # App
+  NEXT_PUBLIC_APP_URL = "https://career-path-pilot-app.netlify.app"
+  
+  # Build
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
 

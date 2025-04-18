@@ -1,6 +1,6 @@
 import Stripe from 'stripe'
 import { STRIPE_SECRET_KEY, SUBSCRIPTION_PLANS } from './config'
-import { CustomerSubscription, SubscriptionPlan } from './types'
+import { CustomerSubscription, SubscriptionPlan, SubscriptionStatus } from './types'
 
 export const stripe = new Stripe(STRIPE_SECRET_KEY, {
   apiVersion: '2023-10-16',
@@ -64,8 +64,8 @@ export async function getCustomerSubscription(
 
   return {
     id: subscription.id,
-    status: subscription.status,
-    currentPeriodEnd: subscription.current_period_end,
+    status: subscription.status as SubscriptionStatus,
+    currentPeriodEnd: new Date(subscription.current_period_end * 1000),
     cancelAtPeriodEnd: subscription.cancel_at_period_end,
     plan: subscriptionPlan || SUBSCRIPTION_PLANS[0]
   }
