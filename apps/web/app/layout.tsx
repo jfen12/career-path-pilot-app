@@ -1,5 +1,5 @@
 import { MainLayout } from '@/components/layout/main-layout'
-import '@/app/globals.css'
+import './globals.css'
 
 export const metadata = {
   title: 'TalentPrimer',

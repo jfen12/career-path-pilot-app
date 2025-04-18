@@ -13,6 +13,7 @@
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
   PNPM_VERSION = "10.8.1"
+  NEXT_PUBLIC_VERCEL_URL = "https://career-path-pilot.netlify.app"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
