@@ -6,6 +6,10 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
+  // Required for Netlify
+  distDir: '.next',
+  // Enable static exports
+  output: 'export',
 }
 
 module.exports = nextConfig 
