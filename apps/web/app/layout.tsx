@@ -1,7 +1,10 @@
-import { MainLayout } from '../components/layout/main-layout'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
 
-export const metadata = {
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
   title: 'TalentPrimer',
   description: 'Career Path Pilot App',
 }
@@ -13,8 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <MainLayout>{children}</MainLayout>
+      <body className={inter.className}>
+        <div className="min-h-screen bg-background">
+          <main className="container mx-auto px-4 py-8">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )
