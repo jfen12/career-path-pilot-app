@@ -11,7 +11,9 @@ const nextConfig = {
     serverActions: true,
   },
   // Required for Netlify
-  distDir: '.next'
+  distDir: '.next',
+  // Enable static exports
+  output: 'standalone'
 }
 
 module.exports = nextConfig 
