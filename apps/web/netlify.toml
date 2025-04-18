@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = ".next/standalone"
+
+[build.environment]
+  NEXT_PUBLIC_SUPABASE_URL = "https://xxgrccxrwcgjixzbjair.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4Z3JjY3hyd2Nnaml4emJqYWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ5ODc5NDAsImV4cCI6MjA2MDU2Mzk0MH0.7fAJ7ghNvw3Io3gBXyGSwQw9qfrdlhGVx1_VK4zEqHQ"
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/.next/server/pages/:splat"
+  status = 200
+  force = true 
