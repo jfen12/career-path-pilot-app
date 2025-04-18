@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       'localhost',
-      'career-path-pilot-app.netlify.app',
+      'talentprimer.netlify.app',
       'xxgrccxrwcgjixzbjair.supabase.co'
     ],
   },
