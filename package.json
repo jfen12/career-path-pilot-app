@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build",
-    "start": "turbo run start",
+    "build": "turbo run build --filter=@talent-primer/web",
+    "start": "turbo run start --filter=@talent-primer/web",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

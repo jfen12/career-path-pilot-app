@@ -1,5 +1,5 @@
 [build]
-  command = "cd apps/web && pnpm install && pnpm run build"
+  command = "pnpm install && pnpm run build"
   publish = "apps/web/.next"
   base = "apps/web"
 
@@ -12,6 +12,7 @@
   STRIPE_WEBHOOK_SECRET = "your-stripe-webhook-secret"
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
+  PNPM_VERSION = "10.8.1"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
