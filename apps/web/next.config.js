@@ -4,6 +4,9 @@ const nextConfig = {
     domains: ['localhost'],
   },
   output: 'standalone',
+  experimental: {
+    serverActions: true,
+  },
 }
 
 module.exports = nextConfig 
