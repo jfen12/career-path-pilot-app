@@ -8,67 +8,66 @@ export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
-    id: 'free',
-    name: 'Free',
-    description: 'Basic features for small teams',
-    price: 0,
+    id: 'price_basic',
+    name: 'Basic',
+    description: 'Perfect for getting started with career development',
+    price: 9.99,
     interval: 'month',
     features: [
-      'Up to 10 employees',
-      'Basic skill tracking',
-      'Standard reports',
-      'Email support'
+      'Access to basic career resources',
+      'Job search tools',
+      'Resume builder',
+      'Limited interview practice',
     ],
     limits: {
-      employees: 10,
+      employees: 1,
       skillsPerEmployee: 5,
       customSkills: false,
       advancedAnalytics: false,
-      apiAccess: false
-    }
+      apiAccess: false,
+    },
   },
   {
-    id: 'pro',
-    name: 'Pro',
-    description: 'Advanced features for growing teams',
-    price: 29,
+    id: 'price_pro',
+    name: 'Professional',
+    description: 'For serious job seekers and career changers',
+    price: 19.99,
     interval: 'month',
     features: [
-      'Up to 50 employees',
-      'Unlimited skill tracking',
-      'Custom skills',
-      'Advanced analytics',
-      'Priority support'
+      'All Basic features',
+      'Advanced career resources',
+      'Unlimited interview practice',
+      'Career coach access',
+      'Personalized job matches',
     ],
     limits: {
-      employees: 50,
-      skillsPerEmployee: -1, // unlimited
+      employees: 1,
+      skillsPerEmployee: -1,
       customSkills: true,
       advancedAnalytics: true,
-      apiAccess: false
-    }
+      apiAccess: false,
+    },
   },
   {
-    id: 'enterprise',
+    id: 'price_enterprise',
     name: 'Enterprise',
-    description: 'Complete solution for large organizations',
-    price: 99,
+    description: 'Complete career development solution for teams',
+    price: 49.99,
     interval: 'month',
     features: [
-      'Unlimited employees',
-      'Unlimited skill tracking',
-      'Custom skills',
-      'Advanced analytics',
-      'API access',
-      'Dedicated support',
-      'Custom integrations'
+      'All Professional features',
+      'Team collaboration tools',
+      'Custom training modules',
+      'Priority support',
+      'Analytics and reporting',
+      'Dedicated account manager',
     ],
     limits: {
-      employees: -1, // unlimited
-      skillsPerEmployee: -1, // unlimited
+      employees: -1,
+      skillsPerEmployee: -1,
       customSkills: true,
       advancedAnalytics: true,
-      apiAccess: true
-    }
-  }
+      apiAccess: true,
+    },
+  },
 ] 

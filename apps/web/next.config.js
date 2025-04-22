@@ -7,13 +7,10 @@ const nextConfig = {
       'xxgrccxrwcgjixzbjair.supabase.co'
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
   // Required for Netlify
   distDir: '.next',
-  // Enable static exports
+  // Disable static page generation for now
   output: 'standalone'
-}
+};
 
-module.exports = nextConfig 
+module.exports = nextConfig; 
