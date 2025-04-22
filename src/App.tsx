@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,6 +7,9 @@ import MobileBottomNav from "./components/layout/MobileBottomNav";
 import ChatBot from "./components/chat/ChatBot";
 
 // Pages
+import Welcome from "./pages/Welcome";
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
 import Dashboard from "./pages/Dashboard";
 import Networking from "./pages/Networking";
 import Development from "./pages/Development";
@@ -14,6 +18,7 @@ import Hiring from "./pages/Hiring";
 import Settings from "./pages/Settings";
 import Help from "./pages/Help";
 import Investors from "./pages/Investors";
+import Onboarding from "./pages/onboarding/Onboarding";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +30,10 @@ function App() {
           <Navbar />
           <main className="container mx-auto px-4 pt-20 pb-24 md:pb-8">
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Welcome />} />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/onboarding" element={<Onboarding />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/networking" element={<Networking />} />
               <Route path="/development" element={<Development />} />

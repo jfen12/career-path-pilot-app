@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { PricingSection } from "@/components/billing/PricingSection";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -14,14 +14,8 @@ const Welcome = () => {
     // Simulate loading
     setTimeout(() => {
       setLoading(false);
-      navigate("/onboarding");
+      navigate("/sign-up");
     }, 600);
-  };
-
-  const handleLoginClick = () => {
-    toast("Coming soon in the full version!", {
-      description: "For the MVP, please use the Get Started option",
-    });
   };
 
   return (
@@ -63,12 +57,15 @@ const Welcome = () => {
           <Button
             variant="outline"
             className="w-full border-career-purple text-career-purple h-12 rounded-lg font-medium"
-            onClick={handleLoginClick}
+            onClick={() => handleLoginClick}
           >
             I already have an account
           </Button>
         </div>
       </div>
+      
+      {/* Add Pricing Section */}
+      <PricingSection />
       
       <footer className="py-4 text-center text-sm text-career-gray">
         <p>© {new Date().getFullYear()} Career Co-Pilot</p>
